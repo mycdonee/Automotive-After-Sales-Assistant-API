@@ -85,4 +85,44 @@ def test_retrieval_rejects_unknown_method() -> None:
 
     assert response.status_code == 422
     
+def test_semantic_retrieval_returns_ranked_results() -> None:
+    response = client.post(
+        "/retrieval/search",
+        json={
+            "query": "The car battery is dead every morning",
+            "top_k": 3,
+            "method": "semantic",
+        },
+    )
+
+    assert response.status_code == 200
+
+    body = response.json()
+
+    assert body["method"] == "semantic"
+    assert body["result_count"] == 3
+    assert len(body["results"]) == 3
+
+    first_result = body["results"][0]
+
+    assert first_result["record_id"] in {"SR007", "SR008"}
+    assert first_result["category"] == "Electrical System"
+    assert 0.0 <= first_result["similarity_score"] <= 1.0
+
+
+def test_semantic_retrieval_respects_top_k() -> None:
+    response = client.post(
+        "/retrieval/search",
+        json={
+            "query": "The cabin does not become cold",
+            "top_k": 2,
+            "method": "semantic",
+        },
+    )
+
+    assert response.status_code == 200
+    assert response.json()["method"] == "semantic"
+    assert response.json()["result_count"] == 2
+    assert len(response.json()["results"]) == 2
+    
     

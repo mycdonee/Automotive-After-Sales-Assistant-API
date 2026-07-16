@@ -3,6 +3,9 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 
+RetrievalMethod = Literal["tfidf", "semantic"]
+
+
 class RetrievalRequest(BaseModel):
     query: str = Field(
         ...,
@@ -17,7 +20,7 @@ class RetrievalRequest(BaseModel):
         le=10,
         description="Maximum number of matching service records to return.",
     )
-    method: Literal["tfidf"] = Field(
+    method: RetrievalMethod = Field(
         default="tfidf",
         description="Retrieval method used to rank service records.",
     )
@@ -34,7 +37,7 @@ class RetrievalResult(BaseModel):
 
 class RetrievalResponse(BaseModel):
     query: str
-    method: str
+    method: RetrievalMethod
     result_count: int
     results: list[RetrievalResult]
     
