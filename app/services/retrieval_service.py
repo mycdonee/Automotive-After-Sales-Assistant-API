@@ -1,40 +1,20 @@
 from pathlib import Path
 
-import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 from app.schemas.retrieval import RetrievalResult
+from app.services.base_retrieval_service import (
+    DEFAULT_DATA_PATH,
+    BaseRetrievalService,
+)
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_DATA_PATH = PROJECT_ROOT / "data" / "service_records.csv"
-
-
-class TfidfRetrievalService:
-    """Retrieve automotive service records using TF-IDF similarity."""
-
-    REQUIRED_COLUMNS = {
-        "record_id",
-        "title",
-        "description",
-        "category",
-        "component",
-    }
+class TfidfRetrievalService(BaseRetrievalService):
+    """Retrieve service records using TF-IDF similarity."""
 
     def __init__(self, data_path: Path = DEFAULT_DATA_PATH) -> None:
-        self.data_path = data_path
-        self.records = self._load_records()
-
-        self.search_documents = (
-            self.records["title"].fillna("")
-            + " "
-            + self.records["description"].fillna("")
-            + " "
-            + self.records["category"].fillna("")
-            + " "
-            + self.records["component"].fillna("")
-        ).tolist()
+        super().__init__(data_path=data_path)
 
         self.vectorizer = TfidfVectorizer(
             lowercase=True,
@@ -43,30 +23,10 @@ class TfidfRetrievalService:
             sublinear_tf=True,
         )
 
+        # Build the searchable document matrix once during initialization.
         self.document_matrix = self.vectorizer.fit_transform(
             self.search_documents
         )
-
-    def _load_records(self) -> pd.DataFrame:
-        if not self.data_path.exists():
-            raise FileNotFoundError(
-                f"Service-record dataset not found: {self.data_path}"
-            )
-
-        records = pd.read_csv(self.data_path)
-
-        missing_columns = self.REQUIRED_COLUMNS.difference(records.columns)
-
-        if missing_columns:
-            missing = ", ".join(sorted(missing_columns))
-            raise ValueError(
-                f"Dataset is missing required columns: {missing}"
-            )
-
-        if records.empty:
-            raise ValueError("Service-record dataset must not be empty.")
-
-        return records
 
     def search(
         self,
@@ -85,27 +45,9 @@ class TfidfRetrievalService:
             self.document_matrix,
         ).flatten()
 
-        ranked_indices = similarities.argsort()[::-1][:top_k]
-
-        results: list[RetrievalResult] = []
-
-        for index in ranked_indices:
-            record = self.records.iloc[index]
-
-            results.append(
-                RetrievalResult(
-                    record_id=str(record["record_id"]),
-                    title=str(record["title"]),
-                    description=str(record["description"]),
-                    category=str(record["category"]),
-                    component=str(record["component"]),
-                    similarity_score=round(
-                        float(similarities[index]),
-                        4,
-                    ),
-                )
-            )
-
-        return results
-    
-    
+        return self._build_results(
+            similarities=similarities,
+            top_k=top_k,
+        )
+        
+        
