@@ -1,0 +1,32 @@
+record_id,title,description,category,component
+SR001,Brake squeaking noise,Squeaking noise occurs when the brake pedal is pressed at low speed,Braking System,brake
+SR002,Brake pedal vibration,The brake pedal vibrates during braking especially at highway speed,Braking System,brake
+SR003,Reduced braking performance,The vehicle requires a longer stopping distance than usual,Braking System,brake
+SR004,Engine overheating,The engine temperature rises above the normal range after extended driving,Engine,engine
+SR005,Engine oil warning light,The engine oil warning light remains illuminated after startup,Engine,engine oil
+SR006,Engine rough idle,The engine shakes and runs unevenly while the vehicle is stationary,Engine,engine
+SR007,Battery not charging,The battery warning light is displayed and the battery does not charge while driving,Electrical System,battery
+SR008,Battery drains overnight,The vehicle battery loses charge after the car is parked overnight,Electrical System,battery
+SR009,Starter motor failure,The engine does not crank and a clicking sound is heard when starting,Electrical System,starter motor
+SR010,Air conditioning not cooling,The air conditioning system blows warm air even at the lowest temperature setting,Climate Control,air conditioning
+SR011,Weak cabin airflow,Airflow from the dashboard vents is significantly weaker than normal,Climate Control,blower fan
+SR012,Heating system failure,The cabin remains cold even when the heating system is enabled,Climate Control,heater
+SR013,Steering wheel vibration,The steering wheel vibrates while driving at higher speeds,Steering and Suspension,steering
+SR014,Vehicle pulls to one side,The vehicle moves toward one side while driving on a straight road,Steering and Suspension,wheel alignment
+SR015,Suspension knocking noise,A knocking sound comes from the suspension when driving over uneven roads,Steering and Suspension,suspension
+SR016,Transmission shifting delay,There is a noticeable delay when the automatic transmission changes gears,Transmission,transmission
+SR017,Transmission slipping,The engine speed increases but the vehicle does not accelerate normally,Transmission,transmission
+SR018,Clutch slipping,The engine speed rises without a corresponding increase in vehicle speed,Transmission,clutch
+SR019,Tire pressure warning,The tire pressure monitoring warning remains active after the tires are inflated,Tires and Wheels,tire
+SR020,Uneven tire wear,One or more tires show significantly greater wear on one side,Tires and Wheels,tire
+SR021,Wheel bearing noise,A humming or grinding noise increases as vehicle speed increases,Tires and Wheels,wheel bearing
+SR022,Headlight failure,One of the front headlights does not illuminate when switched on,Lighting,headlight
+SR023,Brake light failure,A rear brake light does not illuminate when the brake pedal is pressed,Lighting,brake light
+SR024,Dashboard display failure,The digital dashboard display is blank or intermittently switches off,Electrical System,dashboard
+SR025,Parking sensor malfunction,The parking sensors continuously beep even when no obstacle is present,Driver Assistance,parking sensor
+SR026,Rear camera unavailable,The rear-view camera image does not appear when reverse gear is selected,Driver Assistance,rear camera
+SR027,Lane assist unavailable,The lane-keeping assistance system displays an unavailable warning,Driver Assistance,lane assist
+SR028,Windshield wiper failure,The windshield wipers do not move when activated,Visibility,wiper
+SR029,Washer fluid not spraying,No washer fluid reaches the windshield when the washer system is activated,Visibility,washer pump
+SR030,Door lock malfunction,One vehicle door does not lock or unlock using the central locking system,Body and Access,door lock
+
