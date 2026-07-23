@@ -255,3 +255,9 @@ build/
 dist/
 *.egg-info/
 
+# Raw datasets are downloaded locally and are not committed
+data/raw/*
+!data/raw/.gitkeep
+
+# Temporary data-processing files
+data/processed/*.tmp
