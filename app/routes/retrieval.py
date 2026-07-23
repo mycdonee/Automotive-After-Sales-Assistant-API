@@ -1,13 +1,15 @@
-from fastapi import APIRouter, Depends
+from fastapi import (
+    APIRouter,
+    HTTPException,
+    status,
+)
 
 from app.schemas.retrieval import (
     RetrievalRequest,
     RetrievalResponse,
-    RetrievalResult,
 )
-from app.services.retrieval_service import TfidfRetrievalService
-from app.services.semantic_retrieval_service import (
-    SemanticRetrievalService,
+from app.services.retrieval_registry import (
+    get_retrieval_service,
 )
 
 
@@ -17,54 +19,41 @@ router = APIRouter(
 )
 
 
-_tfidf_service = TfidfRetrievalService()
-_semantic_service: SemanticRetrievalService | None = None
-
-
-def get_tfidf_service() -> TfidfRetrievalService:
-    return _tfidf_service
-
-
-def get_semantic_service() -> SemanticRetrievalService:
-    global _semantic_service
-
-    # Load the transformer model only when semantic search is first used.
-    if _semantic_service is None:
-        _semantic_service = SemanticRetrievalService()
-
-    return _semantic_service
-
-
 @router.post(
     "/search",
     response_model=RetrievalResponse,
-    summary="Search automotive service records",
+    response_model_exclude_none=True,
+    summary="Search automotive records",
 )
 def search_service_records(
     request: RetrievalRequest,
-    tfidf_service: TfidfRetrievalService = Depends(
-        get_tfidf_service
-    ),
 ) -> RetrievalResponse:
-    results: list[RetrievalResult]
+    try:
+        service = get_retrieval_service(
+            method=request.method,
+            dataset=request.dataset,
+        )
+    except FileNotFoundError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=(
+                f"The '{request.dataset}' retrieval dataset "
+                "is currently unavailable."
+            ),
+        ) from exc
 
-    if request.method == "semantic":
-        semantic_service = get_semantic_service()
-        results = semantic_service.search(
-            query=request.query,
-            top_k=request.top_k,
-        )
-    else:
-        results = tfidf_service.search(
-            query=request.query,
-            top_k=request.top_k,
-        )
+    results = service.search(
+        query=request.query,
+        top_k=request.top_k,
+        filters=request.filters,
+    )
 
     return RetrievalResponse(
         query=request.query,
         method=request.method,
+        dataset=request.dataset,
+        applied_filters=request.filters,
         result_count=len(results),
         results=results,
     )
-    
     

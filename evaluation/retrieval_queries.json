@@ -1,0 +1,42 @@
+[
+  {
+    "query": "The vehicle takes much longer to stop",
+    "expected_record_id": "SR003"
+  },
+  {
+    "query": "The battery is dead every morning",
+    "expected_record_id": "SR008"
+  },
+  {
+    "query": "The air conditioner only blows warm air",
+    "expected_record_id": "SR010"
+  },
+  {
+    "query": "The dashboard goes completely dark",
+    "expected_record_id": "SR024"
+  },
+  {
+    "query": "There is a knocking sound on bumpy roads",
+    "expected_record_id": "SR015"
+  },
+  {
+    "query": "The engine shakes while waiting at a red light",
+    "expected_record_id": "SR006"
+  },
+  {
+    "query": "The reverse camera does not show an image",
+    "expected_record_id": "SR026"
+  },
+  {
+    "query": "The windshield wipers do not move",
+    "expected_record_id": "SR028"
+  },
+  {
+    "query": "The vehicle drifts to one side on a straight road",
+    "expected_record_id": "SR014"
+  },
+  {
+    "query": "The steering wheel shakes at motorway speed",
+    "expected_record_id": "SR013"
+  }
+]

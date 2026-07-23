@@ -1,0 +1,21 @@
+method,query,expected_record_id,top_1_record_id,top_3_record_ids,top_1_hit,top_3_hit,latency_ms
+tfidf,The vehicle takes much longer to stop,SR003,SR003,SR003|SR014|SR017,True,True,2.63
+tfidf,The battery is dead every morning,SR008,SR007,SR007|SR008|SR030,False,True,0.576
+tfidf,The air conditioner only blows warm air,SR010,SR010,SR010|SR030|SR029,True,True,0.46
+tfidf,The dashboard goes completely dark,SR024,SR024,SR024|SR011|SR030,True,True,0.437
+tfidf,There is a knocking sound on bumpy roads,SR015,SR015,SR015|SR009|SR029,True,True,0.429
+tfidf,The engine shakes while waiting at a red light,SR006,SR006,SR006|SR005|SR023,True,True,0.417
+tfidf,The reverse camera does not show an image,SR026,SR026,SR026|SR022|SR017,True,True,0.416
+tfidf,The windshield wipers do not move,SR028,SR028,SR028|SR029|SR030,True,True,0.403
+tfidf,The vehicle drifts to one side on a straight road,SR014,SR014,SR014|SR017|SR006,True,True,0.422
+tfidf,The steering wheel shakes at motorway speed,SR013,SR013,SR013|SR021|SR014,True,True,0.402
+semantic,The vehicle takes much longer to stop,SR003,SR003,SR003|SR016|SR017,True,True,27.658
+semantic,The battery is dead every morning,SR008,SR008,SR008|SR007|SR009,True,True,32.317
+semantic,The air conditioner only blows warm air,SR010,SR010,SR010|SR011|SR012,True,True,477.39
+semantic,The dashboard goes completely dark,SR024,SR024,SR024|SR011|SR022,True,True,820.896
+semantic,There is a knocking sound on bumpy roads,SR015,SR015,SR015|SR021|SR001,True,True,288.591
+semantic,The engine shakes while waiting at a red light,SR006,SR006,SR006|SR017|SR013,True,True,6.654
+semantic,The reverse camera does not show an image,SR026,SR026,SR026|SR024|SR022,True,True,6.645
+semantic,The windshield wipers do not move,SR028,SR028,SR028|SR029|SR014,True,True,5.469
+semantic,The vehicle drifts to one side on a straight road,SR014,SR014,SR014|SR017|SR020,True,True,282.666
+semantic,The steering wheel shakes at motorway speed,SR013,SR013,SR013|SR017|SR006,True,True,5.662

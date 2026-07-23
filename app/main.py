@@ -10,10 +10,11 @@ def create_app() -> FastAPI:
     application = FastAPI(
         title="Automotive After-Sales Service Assistant API",
         description=(
-            "Backend prototype for automotive service text retrieval, "
-            "issue classification, and structured information extraction."
+            "Backend prototype for natural-language automotive "
+            "record retrieval, issue classification, and structured "
+            "information extraction."
         ),
-        version="0.3.0",
+        version="0.4.0",
     )
 
     application.include_router(health_router)
@@ -23,4 +24,3 @@ def create_app() -> FastAPI:
 
 
 app = create_app()
-
