@@ -445,3 +445,51 @@ It must not be used as:
 NHTSA complaint narratives describe reported events and may not represent confirmed defects or final technical findings.
 
 Model outputs should be treated as search assistance and classification suggestions. Low-confidence predictions should be reviewed by a person, and even higher-confidence predictions may require review when used in a high-risk process.
+
+## Regulatory Management Acceptance
+
+The Regulatory Management branch currently uses acceptance testing rather than a large labelled regulatory retrieval benchmark.
+
+The completed acceptance checks cover:
+
+- structured-data generation
+- independent JSON Schema validation
+- contract-invariant validation
+- runtime Pydantic loading
+- cross-reference integrity
+- deterministic semantic-service behaviour
+- metadata filtering
+- FastAPI request validation
+- typed response serialization
+- OpenAPI exposure
+- real-model endpoint smoke testing
+
+The final acceptance result was:
+
+```text
+18 regulation records
+11 comparison pairs
+53 passing automated tests
+```
+
+A real SentenceTransformer smoke test was also executed through both FastAPI regulation endpoints.
+
+For a warning-triangle query:
+
+- FMVSS 125 and UN Regulation No. 27 appeared in the regulation results
+- the UN R27–FMVSS 125 comparison ranked first among comparison results
+- the response preserved `legal_equivalence = false`
+- the cached semantic service was reused across requests
+
+These checks verify implementation behaviour, but they do not constitute a formal information-retrieval quality benchmark.
+
+A later regulatory evaluation should use a manually labelled query set and report metrics such as:
+
+- Recall@k
+- Mean Reciprocal Rank
+- nDCG
+- filter accuracy
+- latency after model warm-up
+- failure analysis by regulatory system
+
+Regulation similarity scores remain ranking signals and must not be interpreted as legal confidence or compliance probability.

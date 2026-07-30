@@ -252,3 +252,85 @@ Clients communicate with the API through documented REST endpoints and structure
 - Retrieval evaluation currently uses a small labelled query set.
 - Authentication and authorization are not yet implemented.
 - The service has not yet been deployed as a production system.
+
+## Regulatory Management Architecture
+
+The Regulatory Management branch is separate from the service-record retrieval hierarchy.
+
+Its runtime flow is:
+
+```text
+regulation_records.jsonl
+regulation_comparison_pairs.json
+        ↓
+Regulation data loader
+        ↓
+Pydantic models and cross-reference checks
+        ↓
+derived regulation and comparison search documents
+        ↓
+SentenceTransformer embeddings
+        ↓
+cosine-similarity ranking
+        ↓
+Regulations FastAPI route
+```
+
+The main components are:
+
+```text
+app/schemas/regulation.py
+app/services/regulation_data_loader.py
+app/services/regulation_semantic_search_service.py
+app/routes/regulations.py
+```
+
+### Regulation data loader
+
+The loader validates committed JSONL and JSON data at runtime.
+
+It verifies:
+
+- field types and enumerated values
+- unique identifiers
+- comparison references
+- jurisdiction direction
+- regulatory-system consistency
+
+It also constructs search-oriented text from traceable structured fields.
+
+The validated dataset is cached once per application process.
+
+### Regulation semantic search
+
+The semantic service precomputes two embedding matrices:
+
+1. one for the 18 regulation records
+2. one for the 11 comparison pairs
+
+Optional metadata filters are applied before ranking.
+
+The service reuses the shared SentenceTransformer model loader and is itself cached once per process.
+
+### Regulation routes
+
+The API exposes:
+
+```text
+POST /regulations/search
+POST /regulations/comparisons/search
+```
+
+FastAPI dependency injection allows endpoint tests to replace the real semantic service with a deterministic fake implementation.
+
+### Legal-equivalence boundary
+
+Comparison results expose an explicit `legal_equivalence` field.
+
+For all committed comparison pairs:
+
+```text
+legal_equivalence = false
+```
+
+Semantic similarity is used only for information retrieval. It is not interpreted as legal confidence, certification, or proof of regulatory interchangeability.
