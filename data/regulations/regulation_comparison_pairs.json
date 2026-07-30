@@ -1,0 +1,347 @@
+[
+  {
+    "schema_version": "1.0",
+    "pair_number": 1,
+    "pair_id": "unece_r13h__fmvss_135",
+    "left_regulation_id": "unece_r13h",
+    "right_regulation_id": "fmvss_135",
+    "status": "approved",
+    "comparison_level": "partial",
+    "regulatory_system": "braking_and_stability",
+    "comparison_focus": "light_vehicle_braking",
+    "overlap_summary": "Both frameworks regulate light-vehicle braking performance, system behavior, warning functions, and defined test procedures.",
+    "comparable_topics": [
+      "service braking",
+      "parking braking",
+      "stopping performance",
+      "brake-system failure",
+      "anti-lock braking",
+      "warning signals",
+      "vehicle loading conditions",
+      "test procedures"
+    ],
+    "scope_differences": [
+      "Vehicle categories and applicability rules do not map one-to-one.",
+      "Stopping tests, loading conditions, thresholds, and measurement procedures differ.",
+      "UNECE type approval and United States self-certification use different frameworks."
+    ],
+    "legal_equivalence": false,
+    "verification_reference": "data/regulations/comparability_verification.md — Pair 1",
+    "source_reviewed_on": "2026-07-30"
+  },
+  {
+    "schema_version": "1.0",
+    "pair_number": 2,
+    "pair_id": "unece_r140__fmvss_126",
+    "left_regulation_id": "unece_r140",
+    "right_regulation_id": "fmvss_126",
+    "status": "approved",
+    "comparison_level": "partial",
+    "regulatory_system": "braking_and_stability",
+    "comparison_focus": "electronic_stability_control",
+    "overlap_summary": "Both frameworks regulate electronic stability control functionality, vehicle response, malfunction detection, and performance testing.",
+    "comparable_topics": [
+      "electronic stability control",
+      "yaw stability",
+      "lateral responsiveness",
+      "system activation",
+      "malfunction detection",
+      "driver telltales",
+      "dynamic test maneuvers",
+      "performance thresholds"
+    ],
+    "scope_differences": [
+      "Vehicle categories and United States weight limits differ.",
+      "Test maneuvers, instrumentation, thresholds, and calculation methods are not identical.",
+      "Approval and certification systems differ."
+    ],
+    "legal_equivalence": false,
+    "verification_reference": "data/regulations/comparability_verification.md — Pair 2",
+    "source_reviewed_on": "2026-07-30"
+  },
+  {
+    "schema_version": "1.0",
+    "pair_number": 3,
+    "pair_id": "unece_r14__fmvss_210",
+    "left_regulation_id": "unece_r14",
+    "right_regulation_id": "fmvss_210",
+    "status": "approved",
+    "comparison_level": "partial",
+    "regulatory_system": "occupant_restraint",
+    "comparison_focus": "seat_belt_anchorages",
+    "overlap_summary": "Both frameworks regulate seat-belt anchorage location, structural strength, load application, and anchorage testing.",
+    "comparable_topics": [
+      "seat-belt anchorages",
+      "anchorage location",
+      "anchorage geometry",
+      "anchorage strength",
+      "load application",
+      "seating positions",
+      "vehicle structure",
+      "test procedures"
+    ],
+    "scope_differences": [
+      "UN R14 includes additional ISOFIX-related anchorage provisions beyond the core Pair 3 focus.",
+      "Vehicle categories, loads, force directions, and test fixtures differ.",
+      "Type-approval and self-certification systems differ."
+    ],
+    "legal_equivalence": false,
+    "verification_reference": "data/regulations/comparability_verification.md — Pair 3",
+    "source_reviewed_on": "2026-07-30"
+  },
+  {
+    "schema_version": "1.0",
+    "pair_number": 4,
+    "pair_id": "unece_r16__fmvss_209",
+    "left_regulation_id": "unece_r16",
+    "right_regulation_id": "fmvss_209",
+    "status": "approved",
+    "comparison_level": "partial",
+    "regulatory_system": "occupant_restraint",
+    "comparison_focus": "seat_belt_assemblies",
+    "overlap_summary": "Both frameworks regulate seat-belt assembly components, strength, operation, durability, and testing.",
+    "comparable_topics": [
+      "seat-belt assemblies",
+      "webbing",
+      "buckles",
+      "retractors",
+      "attachment hardware",
+      "strength",
+      "durability",
+      "marking and instructions"
+    ],
+    "scope_differences": [
+      "UN R16 has a broader vehicle and restraint-system scope than FMVSS 209.",
+      "Assembly classifications, conditioning, test loads, and acceptance criteria differ.",
+      "Installation and certification structures differ."
+    ],
+    "legal_equivalence": false,
+    "verification_reference": "data/regulations/comparability_verification.md — Pair 4",
+    "source_reviewed_on": "2026-07-30"
+  },
+  {
+    "schema_version": "1.0",
+    "pair_number": 5,
+    "pair_id": "unece_r145__fmvss_225",
+    "left_regulation_id": "unece_r145",
+    "right_regulation_id": "fmvss_225",
+    "status": "approved",
+    "comparison_level": "partial",
+    "regulatory_system": "occupant_restraint",
+    "comparison_focus": "child_restraint_anchorages",
+    "overlap_summary": "Both frameworks regulate standardized child-restraint anchorages, geometry, strength, accessibility, marking, and testing.",
+    "comparable_topics": [
+      "lower anchorages",
+      "ISOFIX and LATCH systems",
+      "top tether anchorages",
+      "anchorage geometry",
+      "anchorage strength",
+      "marking",
+      "accessibility",
+      "load testing"
+    ],
+    "scope_differences": [
+      "ISOFIX, i-Size, and LATCH terminology and classifications do not map one-to-one.",
+      "Vehicle applicability and required seating positions differ.",
+      "Geometry, loads, fixtures, and approval systems differ."
+    ],
+    "legal_equivalence": false,
+    "verification_reference": "data/regulations/comparability_verification.md — Pair 5",
+    "source_reviewed_on": "2026-07-30"
+  },
+  {
+    "schema_version": "1.0",
+    "pair_number": 6,
+    "pair_id": "unece_r48__fmvss_108",
+    "left_regulation_id": "unece_r48",
+    "right_regulation_id": "fmvss_108",
+    "status": "approved",
+    "comparison_level": "partial",
+    "regulatory_system": "lighting_and_light_signalling",
+    "comparison_focus": "vehicle_lighting_installation",
+    "overlap_summary": "Both frameworks regulate vehicle-level installation of lighting and light-signalling functions.",
+    "comparable_topics": [
+      "number of lamps",
+      "mounting location",
+      "mounting height",
+      "geometric visibility",
+      "orientation",
+      "activation",
+      "tell-tales",
+      "headlighting",
+      "turn and stop signals",
+      "side markers and conspicuity"
+    ],
+    "scope_differences": [
+      "UNECE and United States vehicle categories do not map one-to-one.",
+      "Permitted lamp functions, installation geometry, activation rules, and numerical limits differ.",
+      "R48 is primarily an installation regulation, while FMVSS 108 combines installation and equipment-performance requirements."
+    ],
+    "legal_equivalence": false,
+    "verification_reference": "data/regulations/comparability_verification.md — Pair 6",
+    "source_reviewed_on": "2026-07-30"
+  },
+  {
+    "schema_version": "1.0",
+    "pair_number": 7,
+    "pair_id": "unece_r148__fmvss_108",
+    "left_regulation_id": "unece_r148",
+    "right_regulation_id": "fmvss_108",
+    "status": "approved",
+    "comparison_level": "partial",
+    "regulatory_system": "lighting_and_light_signalling",
+    "comparison_focus": "light_signalling_device_performance",
+    "overlap_summary": "Both frameworks regulate multiple corresponding light-signalling lamp categories and their optical, photometric, color, and light-source performance.",
+    "comparable_topics": [
+      "registration-plate lamps",
+      "direction indicators and turn signals",
+      "position and tail lamps",
+      "stop lamps",
+      "clearance and end-outline lamps",
+      "reversing and backup lamps",
+      "daytime running lamps",
+      "side-marker lamps",
+      "luminous intensity",
+      "photometric performance"
+    ],
+    "scope_differences": [
+      "UN R148 includes manoeuvring lamps and rear fog lamps without identified direct FMVSS 108 matches.",
+      "Device names, classifications, numerical limits, test grids, and light-source rules differ.",
+      "UN type approval and United States self-certification differ."
+    ],
+    "legal_equivalence": false,
+    "verification_reference": "data/regulations/comparability_verification.md — Pair 7",
+    "source_reviewed_on": "2026-07-30"
+  },
+  {
+    "schema_version": "1.0",
+    "pair_number": 8,
+    "pair_id": "unece_r149__fmvss_108",
+    "left_regulation_id": "unece_r149",
+    "right_regulation_id": "fmvss_108",
+    "status": "approved",
+    "comparison_level": "partial",
+    "regulatory_system": "lighting_and_light_signalling",
+    "comparison_focus": "road_illumination_device_performance",
+    "overlap_summary": "Both frameworks regulate headlamp beam functions, adaptive driving beams, aiming, cutoff, photometric performance, light sources, and durability.",
+    "comparable_topics": [
+      "driving and upper beams",
+      "passing and lower beams",
+      "adaptive driving beams",
+      "beam cutoff",
+      "headlamp aiming",
+      "photometric test points",
+      "luminous intensity",
+      "light sources",
+      "plastic lenses",
+      "environmental testing"
+    ],
+    "scope_differences": [
+      "Adaptive front-lighting systems, front fog lamps, and cornering lamps were not matched one-to-one.",
+      "Beam terminology, patterns, test grids, aiming methods, and numerical criteria differ.",
+      "Vehicle applicability and certification frameworks differ."
+    ],
+    "legal_equivalence": false,
+    "verification_reference": "data/regulations/comparability_verification.md — Pair 8",
+    "source_reviewed_on": "2026-07-30"
+  },
+  {
+    "schema_version": "1.0",
+    "pair_number": 9,
+    "pair_id": "unece_r150__fmvss_108",
+    "left_regulation_id": "unece_r150",
+    "right_regulation_id": "fmvss_108",
+    "status": "approved",
+    "comparison_level": "partial",
+    "regulatory_system": "lighting_and_light_signalling",
+    "comparison_focus": "retro_reflective_device_performance",
+    "overlap_summary": "Both frameworks regulate reflex reflectors, retroreflective materials, conspicuity products, photometric geometry, color, and physical testing.",
+    "comparable_topics": [
+      "retro-reflectors and reflex reflectors",
+      "retro-reflective materials and sheeting",
+      "vehicle conspicuity",
+      "photometric measurements",
+      "observation angles",
+      "entrance angles",
+      "colorimetric performance",
+      "dimensions",
+      "environmental durability",
+      "product marking"
+    ],
+    "scope_differences": [
+      "UN R150 additionally covers heavy-vehicle plates, slow-moving-vehicle plates, and warning triangles.",
+      "UNECE classes do not map one-to-one to FMVSS reflector and sheeting classifications.",
+      "Measurement geometry, material requirements, physical tests, and certification systems differ."
+    ],
+    "legal_equivalence": false,
+    "verification_reference": "data/regulations/comparability_verification.md — Pair 9",
+    "source_reviewed_on": "2026-07-30"
+  },
+  {
+    "schema_version": "1.0",
+    "pair_number": 10,
+    "pair_id": "unece_r104__fmvss_108",
+    "left_regulation_id": "unece_r104",
+    "right_regulation_id": "fmvss_108",
+    "status": "approved",
+    "comparison_level": "partial",
+    "regulatory_system": "lighting_and_light_signalling",
+    "comparison_focus": "vehicle_conspicuity_marking_requirements",
+    "overlap_summary": "Both frameworks regulate conspicuity markings for specified heavy vehicles using retro-reflective materials on vehicle sides and rears.",
+    "comparable_topics": [
+      "heavy-vehicle conspicuity",
+      "retro-reflective marking materials",
+      "side markings",
+      "rear markings",
+      "strip and sheeting dimensions",
+      "placement and spacing",
+      "color",
+      "photometric performance",
+      "observation and entrance angles",
+      "durability and identification"
+    ],
+    "scope_differences": [
+      "R104 uses UNECE vehicle categories, while FMVSS 108 uses vehicle definitions, width, and GVWR.",
+      "Strip patterns, coverage, colors, placement, and certification grades differ.",
+      "R104 type approval and FMVSS self-certification use different systems."
+    ],
+    "legal_equivalence": false,
+    "verification_reference": "data/regulations/comparability_verification.md — Pair 10",
+    "source_reviewed_on": "2026-07-30"
+  },
+  {
+    "schema_version": "1.0",
+    "pair_number": 11,
+    "pair_id": "unece_r27__fmvss_125",
+    "left_regulation_id": "unece_r27",
+    "right_regulation_id": "fmvss_125",
+    "status": "approved",
+    "comparison_level": "partial",
+    "regulatory_system": "lighting_and_light_signalling",
+    "comparison_focus": "portable_advance_warning_triangle_performance",
+    "overlap_summary": "Both frameworks regulate portable equilateral warning triangles using reflective and fluorescent materials to warn approaching traffic of a stopped vehicle.",
+    "comparable_topics": [
+      "portable warning triangles",
+      "daytime and nighttime visibility",
+      "equilateral-triangle configuration",
+      "reflective material",
+      "fluorescent material",
+      "combined-purpose material",
+      "luminance and reflectivity",
+      "entrance and observation angles",
+      "structural stability",
+      "environmental durability",
+      "storage and instructions",
+      "marking and testing"
+    ],
+    "scope_differences": [
+      "FMVSS 125 applies specifically to devices for buses and trucks over 10,000 pounds GVWR.",
+      "UNECE Type 1 and Type 2 classifications do not map one-to-one to FMVSS material options.",
+      "Dimensions, optical geometry, test methods, numerical limits, and certification systems differ.",
+      "UN R27 has transitional status linked to the entry into force of UN R150."
+    ],
+    "legal_equivalence": false,
+    "verification_reference": "data/regulations/comparability_verification.md — Pair 11",
+    "source_reviewed_on": "2026-07-30"
+  }
+]

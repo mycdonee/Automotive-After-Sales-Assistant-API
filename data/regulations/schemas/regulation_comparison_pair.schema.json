@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "regulation_comparison_pair.schema.json",
+  "title": "RegulationComparisonPair",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "pair_number",
+    "pair_id",
+    "left_regulation_id",
+    "right_regulation_id",
+    "status",
+    "comparison_level",
+    "regulatory_system",
+    "comparison_focus",
+    "overlap_summary",
+    "comparable_topics",
+    "scope_differences",
+    "legal_equivalence",
+    "verification_reference",
+    "source_reviewed_on"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "pair_number": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "pair_id": {
+      "type": "string",
+      "pattern": "^unece_[a-z0-9]+__fmvss_[a-z0-9]+$"
+    },
+    "left_regulation_id": {
+      "type": "string",
+      "pattern": "^unece_[a-z0-9]+$"
+    },
+    "right_regulation_id": {
+      "type": "string",
+      "pattern": "^fmvss_[a-z0-9]+$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "approved",
+        "rejected",
+        "pending"
+      ]
+    },
+    "comparison_level": {
+      "type": "string",
+      "enum": [
+        "direct",
+        "partial",
+        "system_level"
+      ]
+    },
+    "regulatory_system": {
+      "type": "string",
+      "enum": [
+        "braking_and_stability",
+        "occupant_restraint",
+        "lighting_and_light_signalling"
+      ]
+    },
+    "comparison_focus": {
+      "type": "string",
+      "enum": [
+        "light_vehicle_braking",
+        "electronic_stability_control",
+        "seat_belt_anchorages",
+        "seat_belt_assemblies",
+        "child_restraint_anchorages",
+        "vehicle_lighting_installation",
+        "light_signalling_device_performance",
+        "road_illumination_device_performance",
+        "retro_reflective_device_performance",
+        "vehicle_conspicuity_marking_requirements",
+        "portable_advance_warning_triangle_performance"
+      ]
+    },
+    "overlap_summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "comparable_topics": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "scope_differences": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "legal_equivalence": {
+      "type": "boolean",
+      "const": false
+    },
+    "verification_reference": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_reviewed_on": {
+      "type": "string",
+      "format": "date"
+    }
+  }
+}
