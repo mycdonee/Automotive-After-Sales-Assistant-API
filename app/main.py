@@ -9,6 +9,9 @@ from app.routes.health import (
 from app.routes.retrieval import (
     router as retrieval_router,
 )
+from app.routes.regulations import (
+    router as regulations_router,
+)
 
 
 def create_app() -> FastAPI:
@@ -38,6 +41,10 @@ def create_app() -> FastAPI:
 
     application.include_router(
         classification_router
+    )
+
+    application.include_router(
+        regulations_router
     )
 
     return application

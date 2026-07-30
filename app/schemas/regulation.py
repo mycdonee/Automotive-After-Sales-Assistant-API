@@ -289,3 +289,150 @@ class RegulationComparisonSearchResult(BaseModel):
         ge=-1.0,
         le=1.0,
     )
+
+class RegulationSearchRequest(BaseModel):
+    """Request body for searching individual regulations."""
+
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+
+    query: str = Field(
+        ...,
+        min_length=3,
+        max_length=500,
+        description=(
+            "Natural-language query describing a regulatory "
+            "requirement, regulated object, or vehicle system."
+        ),
+        examples=[
+            (
+                "Requirements for portable warning triangles "
+                "used near a stopped vehicle"
+            )
+        ],
+    )
+
+    top_k: int = Field(
+        default=5,
+        ge=1,
+        le=10,
+        description=(
+            "Maximum number of regulation records returned."
+        ),
+    )
+
+    jurisdiction: Jurisdiction | None = Field(
+        default=None,
+        description=(
+            "Optional jurisdiction filter."
+        ),
+    )
+
+    regulatory_system: RegulatorySystem | None = Field(
+        default=None,
+        description=(
+            "Optional automotive regulatory-system filter."
+        ),
+    )
+
+    @field_validator("query")
+    @classmethod
+    def validate_query(
+        cls,
+        value: str,
+    ) -> str:
+        normalized_query = value.strip()
+
+        if len(normalized_query) < 3:
+            raise ValueError(
+                "Query must contain at least three "
+                "non-whitespace characters."
+            )
+
+        return normalized_query
+
+
+class RegulationSearchResponse(BaseModel):
+    """Response returned from regulation search."""
+
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+
+    query: str
+    jurisdiction: Jurisdiction | None = None
+    regulatory_system: RegulatorySystem | None = None
+    result_count: int
+    results: list[RegulationSearchResult]
+
+
+class RegulationComparisonSearchRequest(BaseModel):
+    """Request body for searching regulation comparisons."""
+
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+
+    query: str = Field(
+        ...,
+        min_length=3,
+        max_length=500,
+        description=(
+            "Natural-language query describing a UNECE–FMVSS "
+            "comparison topic."
+        ),
+        examples=[
+            (
+                "Compare European and United States "
+                "warning-triangle requirements"
+            )
+        ],
+    )
+
+    top_k: int = Field(
+        default=5,
+        ge=1,
+        le=10,
+        description=(
+            "Maximum number of comparison pairs returned."
+        ),
+    )
+
+    regulatory_system: RegulatorySystem | None = Field(
+        default=None,
+        description=(
+            "Optional automotive regulatory-system filter."
+        ),
+    )
+
+    @field_validator("query")
+    @classmethod
+    def validate_query(
+        cls,
+        value: str,
+    ) -> str:
+        normalized_query = value.strip()
+
+        if len(normalized_query) < 3:
+            raise ValueError(
+                "Query must contain at least three "
+                "non-whitespace characters."
+            )
+
+        return normalized_query
+
+
+class RegulationComparisonSearchResponse(BaseModel):
+    """Response returned from comparison-pair search."""
+
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+
+    query: str
+    regulatory_system: RegulatorySystem | None = None
+    result_count: int
+    results: list[
+        RegulationComparisonSearchResult
+    ]
