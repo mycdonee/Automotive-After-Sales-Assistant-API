@@ -239,3 +239,53 @@ class RegulationDataset(BaseModel):
         str,
         ...,
     ]
+
+class RegulationSearchResult(BaseModel):
+    """Ranked result returned from regulation search."""
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+
+    result_type: Literal["regulation"] = "regulation"
+    regulation_id: str
+    official_identifier: str
+    title: str
+    jurisdiction: Jurisdiction
+    regulatory_system: RegulatorySystem
+    regulated_object: str
+    scope_summary: str
+    reviewed_version: str
+
+    similarity_score: float = Field(
+        ge=-1.0,
+        le=1.0,
+    )
+
+
+class RegulationComparisonSearchResult(BaseModel):
+    """Ranked result returned from comparison-pair search."""
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+
+    result_type: Literal["comparison"] = "comparison"
+    pair_id: str
+    pair_number: int
+    left_regulation_id: str
+    right_regulation_id: str
+    left_official_identifier: str
+    right_official_identifier: str
+    regulatory_system: RegulatorySystem
+    comparison_focus: ComparisonFocus
+    comparison_level: ComparisonLevel
+    overlap_summary: str
+    legal_equivalence: Literal[False]
+
+    similarity_score: float = Field(
+        ge=-1.0,
+        le=1.0,
+    )
