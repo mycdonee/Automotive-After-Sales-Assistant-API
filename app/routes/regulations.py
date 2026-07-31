@@ -34,6 +34,8 @@ RegulationSearchServiceDependency = Annotated[
 @router.post(
     "/search",
     response_model=RegulationSearchResponse,
+    response_model_exclude_none=True,
+    operation_id="SearchRegulations",
     summary="Search verified regulations",
     description=(
         "Semantically search verified UNECE and United States "
@@ -64,6 +66,8 @@ def search_regulations(
 @router.post(
     "/comparisons/search",
     response_model=RegulationComparisonSearchResponse,
+    response_model_exclude_none=True,
+    operation_id="SearchRegulationComparisons",
     summary="Search verified regulation comparisons",
     description=(
         "Semantically search the approved UNECE–FMVSS "

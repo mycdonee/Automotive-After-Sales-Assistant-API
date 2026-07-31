@@ -311,6 +311,7 @@ This keeps the automated suite reproducible and independent of network access wh
 - [NHTSA data pipeline](docs/data_pipeline.md)
 - [Evaluation](docs/evaluation.md)
 - [Regulatory Management milestone](docs/regulatory_management.md)
+- [Power Platform connector](integrations/power_platform/README.md)
 - [Regulation dataset documentation](data/regulations/README.md)
 - [Comparability verification](data/regulations/comparability_verification.md)
 - [Regulation data contract](data/regulations/data_contract.md)

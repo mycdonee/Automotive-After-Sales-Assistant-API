@@ -1,0 +1,486 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Automotive Regulatory Search",
+    "description": "Search verified automotive regulations and scoped UNECE–FMVSS comparison pairs. Results are informational and do not establish legal equivalence.",
+    "version": "1.0.0"
+  },
+  "host": "replace-with-your-api-host.example.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/regulations/search": {
+      "post": {
+        "tags": [
+          "Regulations"
+        ],
+        "summary": "Search verified regulations",
+        "description": "Semantically search verified UNECE and United States regulation records.",
+        "operationId": "SearchRegulations",
+        "x-ms-visibility": "important",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "x-ms-summary": "Regulation Search Request",
+            "description": "Search query and optional metadata filters.",
+            "schema": {
+              "$ref": "#/definitions/RegulationSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful regulation search.",
+            "schema": {
+              "$ref": "#/definitions/RegulationSearchResponse"
+            }
+          },
+          "422": {
+            "description": "Request validation failed."
+          }
+        }
+      }
+    },
+    "/regulations/comparisons/search": {
+      "post": {
+        "tags": [
+          "Regulations"
+        ],
+        "summary": "Search regulation comparisons",
+        "description": "Semantically search approved UNECE–FMVSS comparison pairs.",
+        "operationId": "SearchRegulationComparisons",
+        "x-ms-visibility": "important",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "x-ms-summary": "Comparison Search Request",
+            "description": "Comparison query and optional regulatory-system filter.",
+            "schema": {
+              "$ref": "#/definitions/RegulationComparisonSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful comparison search.",
+            "schema": {
+              "$ref": "#/definitions/RegulationComparisonSearchResponse"
+            }
+          },
+          "422": {
+            "description": "Request validation failed."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "RegulationSearchRequest": {
+      "type": "object",
+      "required": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "x-ms-summary": "Regulation Search Request",
+      "description": "Natural-language request for searching verified regulation records.",
+      "properties": {
+        "query": {
+          "type": "string",
+          "x-ms-summary": "Query",
+          "description": "Describe the regulation, requirement, regulated object, or vehicle system.",
+          "minLength": 3,
+          "maxLength": 500,
+          "example": "Portable warning triangle requirements",
+          "x-ms-visibility": "important"
+        },
+        "top_k": {
+          "type": "integer",
+          "format": "int32",
+          "x-ms-summary": "Maximum Results",
+          "description": "Maximum number of ranked results.",
+          "default": 5,
+          "minimum": 1,
+          "maximum": 10,
+          "x-ms-visibility": "advanced"
+        },
+        "jurisdiction": {
+          "type": "string",
+          "x-ms-summary": "Jurisdiction",
+          "description": "Optionally restrict results to UNECE or United States standards.",
+          "enum": [
+            "UNECE",
+            "United States"
+          ],
+          "x-ms-visibility": "advanced"
+        },
+        "regulatory_system": {
+          "type": "string",
+          "x-ms-summary": "Regulatory System",
+          "description": "Optionally restrict results to one supported automotive regulatory system.",
+          "enum": [
+            "braking_and_stability",
+            "occupant_restraint",
+            "lighting_and_light_signalling"
+          ],
+          "x-ms-visibility": "advanced"
+        }
+      }
+    },
+    "RegulationSearchResult": {
+      "type": "object",
+      "required": [
+        "result_type",
+        "regulation_id",
+        "official_identifier",
+        "title",
+        "jurisdiction",
+        "regulatory_system",
+        "regulated_object",
+        "scope_summary",
+        "reviewed_version",
+        "similarity_score"
+      ],
+      "additionalProperties": false,
+      "x-ms-summary": "Regulation Search Result",
+      "description": "One semantically ranked regulation record.",
+      "properties": {
+        "result_type": {
+          "type": "string",
+          "x-ms-summary": "Result Type",
+          "description": "Indicates an individual regulation result.",
+          "enum": [
+            "regulation"
+          ]
+        },
+        "regulation_id": {
+          "type": "string",
+          "x-ms-summary": "Regulation ID",
+          "description": "Stable internal regulation identifier."
+        },
+        "official_identifier": {
+          "type": "string",
+          "x-ms-summary": "Official Identifier",
+          "description": "Official UNECE or FMVSS identifier."
+        },
+        "title": {
+          "type": "string",
+          "x-ms-summary": "Title",
+          "description": "Official regulation title."
+        },
+        "jurisdiction": {
+          "type": "string",
+          "x-ms-summary": "Jurisdiction",
+          "description": "Regulation jurisdiction.",
+          "enum": [
+            "UNECE",
+            "United States"
+          ]
+        },
+        "regulatory_system": {
+          "type": "string",
+          "x-ms-summary": "Regulatory System",
+          "description": "Automotive regulatory-system category.",
+          "enum": [
+            "braking_and_stability",
+            "occupant_restraint",
+            "lighting_and_light_signalling"
+          ]
+        },
+        "regulated_object": {
+          "type": "string",
+          "x-ms-summary": "Regulated Object",
+          "description": "Vehicle system, component, or object regulated by the source."
+        },
+        "scope_summary": {
+          "type": "string",
+          "x-ms-summary": "Scope Summary",
+          "description": "Reviewed high-level scope summary."
+        },
+        "reviewed_version": {
+          "type": "string",
+          "x-ms-summary": "Reviewed Version",
+          "description": "Version reviewed for this dataset."
+        },
+        "similarity_score": {
+          "type": "number",
+          "format": "double",
+          "x-ms-summary": "Similarity Score",
+          "description": "Semantic ranking signal. This is not legal confidence or compliance approval.",
+          "minimum": -1.0,
+          "maximum": 1.0
+        }
+      }
+    },
+    "RegulationSearchResponse": {
+      "type": "object",
+      "required": [
+        "query",
+        "result_count",
+        "results"
+      ],
+      "additionalProperties": false,
+      "x-ms-summary": "Regulation Search Response",
+      "description": "Response containing ranked regulation records.",
+      "properties": {
+        "query": {
+          "type": "string",
+          "x-ms-summary": "Query",
+          "description": "Normalized search query."
+        },
+        "jurisdiction": {
+          "type": "string",
+          "x-ms-summary": "Jurisdiction",
+          "description": "Applied jurisdiction filter, when present.",
+          "enum": [
+            "UNECE",
+            "United States"
+          ]
+        },
+        "regulatory_system": {
+          "type": "string",
+          "x-ms-summary": "Regulatory System",
+          "description": "Applied regulatory-system filter, when present.",
+          "enum": [
+            "braking_and_stability",
+            "occupant_restraint",
+            "lighting_and_light_signalling"
+          ]
+        },
+        "result_count": {
+          "type": "integer",
+          "format": "int32",
+          "x-ms-summary": "Result Count",
+          "description": "Number of returned regulation records.",
+          "minimum": 0
+        },
+        "results": {
+          "type": "array",
+          "x-ms-summary": "Results",
+          "description": "Ranked regulation-search results.",
+          "items": {
+            "$ref": "#/definitions/RegulationSearchResult"
+          }
+        }
+      }
+    },
+    "RegulationComparisonSearchRequest": {
+      "type": "object",
+      "required": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "x-ms-summary": "Comparison Search Request",
+      "description": "Natural-language request for searching approved UNECE–FMVSS comparison pairs.",
+      "properties": {
+        "query": {
+          "type": "string",
+          "x-ms-summary": "Query",
+          "description": "Describe the regulatory comparison topic.",
+          "minLength": 3,
+          "maxLength": 500,
+          "example": "Compare European and United States warning triangle requirements",
+          "x-ms-visibility": "important"
+        },
+        "top_k": {
+          "type": "integer",
+          "format": "int32",
+          "x-ms-summary": "Maximum Results",
+          "description": "Maximum number of ranked comparison pairs.",
+          "default": 5,
+          "minimum": 1,
+          "maximum": 10,
+          "x-ms-visibility": "advanced"
+        },
+        "regulatory_system": {
+          "type": "string",
+          "x-ms-summary": "Regulatory System",
+          "description": "Optionally restrict comparison pairs to one regulatory system.",
+          "enum": [
+            "braking_and_stability",
+            "occupant_restraint",
+            "lighting_and_light_signalling"
+          ],
+          "x-ms-visibility": "advanced"
+        }
+      }
+    },
+    "RegulationComparisonSearchResult": {
+      "type": "object",
+      "required": [
+        "result_type",
+        "pair_id",
+        "pair_number",
+        "left_regulation_id",
+        "right_regulation_id",
+        "left_official_identifier",
+        "right_official_identifier",
+        "regulatory_system",
+        "comparison_focus",
+        "comparison_level",
+        "overlap_summary",
+        "legal_equivalence",
+        "similarity_score"
+      ],
+      "additionalProperties": false,
+      "x-ms-summary": "Comparison Search Result",
+      "description": "One semantically ranked UNECE–FMVSS comparison pair.",
+      "properties": {
+        "result_type": {
+          "type": "string",
+          "x-ms-summary": "Result Type",
+          "description": "Indicates a regulation-comparison result.",
+          "enum": [
+            "comparison"
+          ]
+        },
+        "pair_id": {
+          "type": "string",
+          "x-ms-summary": "Pair ID",
+          "description": "Stable internal comparison-pair ID."
+        },
+        "pair_number": {
+          "type": "integer",
+          "format": "int32",
+          "x-ms-summary": "Pair Number",
+          "description": "Reviewed comparison-pair number.",
+          "minimum": 1
+        },
+        "left_regulation_id": {
+          "type": "string",
+          "x-ms-summary": "UNECE Regulation ID",
+          "description": "Internal ID of the UNECE regulation."
+        },
+        "right_regulation_id": {
+          "type": "string",
+          "x-ms-summary": "FMVSS Regulation ID",
+          "description": "Internal ID of the United States standard."
+        },
+        "left_official_identifier": {
+          "type": "string",
+          "x-ms-summary": "UNECE Official Identifier",
+          "description": "Official identifier of the UNECE source."
+        },
+        "right_official_identifier": {
+          "type": "string",
+          "x-ms-summary": "FMVSS Official Identifier",
+          "description": "Official identifier of the FMVSS source."
+        },
+        "regulatory_system": {
+          "type": "string",
+          "x-ms-summary": "Regulatory System",
+          "description": "Shared regulatory-system category.",
+          "enum": [
+            "braking_and_stability",
+            "occupant_restraint",
+            "lighting_and_light_signalling"
+          ]
+        },
+        "comparison_focus": {
+          "type": "string",
+          "x-ms-summary": "Comparison Focus",
+          "description": "Reviewed technical comparison focus.",
+          "enum": [
+            "light_vehicle_braking",
+            "electronic_stability_control",
+            "seat_belt_anchorages",
+            "seat_belt_assemblies",
+            "child_restraint_anchorages",
+            "vehicle_lighting_installation",
+            "light_signalling_device_performance",
+            "road_illumination_device_performance",
+            "retro_reflective_device_performance",
+            "vehicle_conspicuity_marking_requirements",
+            "portable_advance_warning_triangle_performance"
+          ]
+        },
+        "comparison_level": {
+          "type": "string",
+          "x-ms-summary": "Comparison Level",
+          "description": "Strength and scope of the comparison.",
+          "enum": [
+            "direct",
+            "partial",
+            "system_level"
+          ]
+        },
+        "overlap_summary": {
+          "type": "string",
+          "x-ms-summary": "Overlap Summary",
+          "description": "Reviewed summary of meaningful overlap."
+        },
+        "legal_equivalence": {
+          "type": "boolean",
+          "x-ms-summary": "Legal Equivalence",
+          "description": "Always false. The comparison does not establish legal interchangeability.",
+          "enum": [
+            false
+          ],
+          "default": false
+        },
+        "similarity_score": {
+          "type": "number",
+          "format": "double",
+          "x-ms-summary": "Similarity Score",
+          "description": "Semantic ranking signal. This is not legal confidence or compliance approval.",
+          "minimum": -1.0,
+          "maximum": 1.0
+        }
+      }
+    },
+    "RegulationComparisonSearchResponse": {
+      "type": "object",
+      "required": [
+        "query",
+        "result_count",
+        "results"
+      ],
+      "additionalProperties": false,
+      "x-ms-summary": "Comparison Search Response",
+      "description": "Response containing ranked regulation comparison pairs.",
+      "properties": {
+        "query": {
+          "type": "string",
+          "x-ms-summary": "Query",
+          "description": "Normalized search query."
+        },
+        "regulatory_system": {
+          "type": "string",
+          "x-ms-summary": "Regulatory System",
+          "description": "Applied regulatory-system filter, when present.",
+          "enum": [
+            "braking_and_stability",
+            "occupant_restraint",
+            "lighting_and_light_signalling"
+          ]
+        },
+        "result_count": {
+          "type": "integer",
+          "format": "int32",
+          "x-ms-summary": "Result Count",
+          "description": "Number of returned comparison pairs.",
+          "minimum": 0
+        },
+        "results": {
+          "type": "array",
+          "x-ms-summary": "Results",
+          "description": "Ranked comparison-search results.",
+          "items": {
+            "$ref": "#/definitions/RegulationComparisonSearchResult"
+          }
+        }
+      }
+    }
+  }
+}
