@@ -224,4 +224,3 @@ def test_committed_connector_matches_exporter() -> None:
         DEFAULT_OUTPUT_PATH.stat().st_size
         < MAX_CONNECTOR_SIZE_BYTES
     )
-
